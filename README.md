@@ -44,7 +44,7 @@ Then update the test script in the `package.json` to set the `PGNAME` environmen
 
 ```json
 {
-  "test": "PGNAME=mytestdatabase tape **/*.test.js | tap-spec"
+  "test": "PGNAME=mytestdatabase tape src/**/*.test.js | tap-spec"
 }
 ```
 
