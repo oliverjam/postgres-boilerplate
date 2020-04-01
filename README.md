@@ -4,7 +4,7 @@ This is a shell to show how I'd structure a minimal Node app with a Postgres dat
 
 ## Local databases
 
-## Development database
+### Development database
 
 Create a new user:
 
