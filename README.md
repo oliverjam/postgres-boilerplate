@@ -6,22 +6,16 @@ This is a shell to show how I'd structure a minimal Node app with a Postgres dat
 
 ## Development database
 
-Create a local Postgres database:
+Create a new user:
 
 ```sh
-psql -c CREATE DATABASE mydatabase
+psql -c "CREATE USER myuser WITH PASSWORD mypassword"
 ```
 
-then create a new user:
+then create a new database owned by that user:
 
 ```sh
-psql -c CREATE USER myuser WITH PASSWORD mypassword
-```
-
-then make that user the owner of the new database:
-
-```sh
-psql -c ALTER OWNER DATABASE mydatabase OWNER TO myuser
+psql -c "CREATE DATABASE mydatabase WITH OWNER myuser"
 ```
 
 There is an `example.env` file in the root of the project. You can rename this to `.env` and change the values to your own local database and user.
