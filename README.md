@@ -12,6 +12,12 @@ Create a new user:
 psql -c "CREATE USER myuser WITH PASSWORD mypassword"
 ```
 
+then make that user a "superuser" (with access to all tables you end up creating):
+
+```sh
+psql -c "ALTER USER user1 WITH SUPERUSER"
+```
+
 then create a new database owned by that user:
 
 ```sh
