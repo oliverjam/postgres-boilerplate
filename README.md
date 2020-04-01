@@ -37,7 +37,7 @@ psql -c "CREATE DATABASE mytestdatabase"
 then make the same user the owner:
 
 ```sh
-psql -c "ALTER OWNER DATABASE mytestdatabase OWNER TO myuser"
+psql -c "ALTER DATABASE mytestdatabase OWNER TO myuser"
 ```
 
 Then update the test script in the `package.json` to set the `PGNAME` environment variable to the name of your test database:
