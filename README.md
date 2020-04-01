@@ -83,7 +83,9 @@ Creates a `node-postgres` "pool" of query clients. We can use this to send datab
 
 If we want to connect to a completely new database (e.g. a remote one on Heroku) we can pass a `connectionString` property in the `pg.Pool` options object. This is a URL that looks like `postgres://username:password.somedomain.com:5432/databasename`. It's the same environment variables but all set in one go.
 
-Heroku will set an environment variable named `DATABASE_URL`, which will be a connection string like the one above. So we can pass that to `pg.Pool`: if the environment variable is defined `pg` will use it, otherwise it'll fall back to your local database.
+Heroku will set an environment variable named `DATABASE_URL` for your deployed production server. Your server will be able to access this at `process.env.DATABASE_URL` (but only on Heroku, not when you run it locally).
+
+This environment variable will be a connection string like the one above. So we can pass that to `pg.Pool`: if the environment variable is defined `pg` will use it, otherwise it'll fall back to your local database.
 
 ### `database/build.js`
 
