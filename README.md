@@ -31,13 +31,13 @@ There is an `example.env` file in the root of the project. You can rename this t
 If you want to test your database locally you should create a separate test database:
 
 ```sh
-psql -c CREATE DATABASE mytestdatabase
+psql -c "CREATE DATABASE mytestdatabase"
 ```
 
 then make the same user the owner:
 
 ```sh
-psql -c ALTER OWNER DATABASE mytestdatabase OWNER TO myuser
+psql -c "ALTER OWNER DATABASE mytestdatabase OWNER TO myuser"
 ```
 
 Then update the test script in the `package.json` to set the `PGNAME` environment variable to the name of your test database:
