@@ -9,7 +9,7 @@ This is a shell to show how I'd structure a minimal Node app with a Postgres dat
 Create a new user:
 
 ```sh
-psql -c "CREATE USER myuser WITH PASSWORD mypassword"
+psql -c "CREATE USER myuser WITH PASSWORD 'mypassword'"
 ```
 
 then make that user a "superuser" (with access to all tables you end up creating):
