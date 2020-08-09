@@ -13,10 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "pg": "^8.0.0"
+    "pg": "^8.3.0"
   },
   "devDependencies": {
+    "nodemon": "^2.0.4",
     "tap-spec": "^5.0.0",
-    "tape": "^4.13.2"
+    "tape": "^5.0.1"
   }
 }
