@@ -56,7 +56,11 @@ If you deploy to Heroku it will set an environment variable named `DATABASE_URL`
 
 ### `database/build.js`
 
-Exports a function that rebuilds the database from scratch. This is useful to run before each test so you are always starting each test with fresh consistent data.
+Exports a function that rebuilds the database from scratch. This is useful to run before each test so you are always starting each test with fresh consistent data. You can also run the file directly if you want to rebuild your dev database with:
+
+```sh
+node src/database/build.js
+```
 
 ### `database/init.sql`
 
