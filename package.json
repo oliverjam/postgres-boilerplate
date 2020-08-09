@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "PGDATABASE=mytestdatabase tape src/**/*.test.js | tap-spec"
+    "test": "NODE_ENV=test tape src/**/*.test.js | tap-spec"
   },
   "keywords": [],
   "author": "Oliver Phillips <hello@oliverjam.es> (https://oliverjam.es/)",

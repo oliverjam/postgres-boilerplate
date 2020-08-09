@@ -6,47 +6,18 @@ This is a shell to show how I'd structure a minimal Node app with a Postgres dat
 
 ### Development database
 
-Create a new user:
+Type `psql` in your terminal to enter the Postgres CLI. Then run the following SQL to create a new user, development DB and test DB:
 
-```sh
-psql -c "CREATE USER myuser WITH PASSWORD 'mypassword'"
+```sql
+CREATE USER myuser WITH PASSWORD 'mypassword';
+ALTER USER myuser WITH SUPERUSER;
+CREATE DATABASE mydatabase WITH OWNER myuser;
+CREATE DATABASE mytestdatabase WITH OWNER myuser;
 ```
 
-then make that user a "superuser" (with access to all tables you end up creating):
+You can change the user and database names to match your project.
 
-```sh
-psql -c "ALTER USER myuser WITH SUPERUSER"
-```
-
-then create a new database owned by that user:
-
-```sh
-psql -c "CREATE DATABASE mydatabase WITH OWNER myuser"
-```
-
-There is an `example.env` file in the root of the project. You can rename this to `.env` and change the values to your own local database and user.
-
-### Testing database
-
-If you want to test your database locally you should create a separate test database:
-
-```sh
-psql -c "CREATE DATABASE mytestdatabase"
-```
-
-then make the same user the owner:
-
-```sh
-psql -c "ALTER DATABASE mytestdatabase OWNER TO myuser"
-```
-
-Then update the test script in the `package.json` to set the `PGNAME` environment variable to the name of your test database:
-
-```json
-{
-  "test": "PGNAME=mytestdatabase tape src/**/*.test.js | tap-spec"
-}
-```
+There is an `example.env` file in the root of the project. You can rename this to `.env` and change the URLs to match your own local databases and user.
 
 ## Running locally
 
@@ -79,13 +50,9 @@ Each model function should handle only data access. We want to keep this separat
 
 Creates a `node-postgres` "pool" of query clients. We can use this to send database queries to select/insert/update data in our database. This object is exported so we can use it elsewhere in our app.
 
-`node-postgres` will use sensible default values to connect to a database, so we only need to set certain values as environment variables. Our `.env` should contain the database name and user credentials for our local development database.
+We tell `node-postgres` which database to connect to with the `connectionString` option. Our `.env` should contain the local dev and test URLs to be used here.
 
-If we want to connect to a completely new database (e.g. a remote one on Heroku) we can pass a `connectionString` property in the `pg.Pool` options object. This is a URL that looks like `postgres://username:password.somedomain.com:5432/databasename`. It's the same environment variables but all set in one go.
-
-Heroku will set an environment variable named `DATABASE_URL` for your deployed production server. Your server will be able to access this at `process.env.DATABASE_URL` (but only on Heroku, not when you run it locally).
-
-This environment variable will be a connection string like the one above. So we can pass that to `pg.Pool`: if the environment variable is defined `pg` will use it, otherwise it'll fall back to your local database.
+If you deploy to Heroku it will set an environment variable named `DATABASE_URL` for your deployed production server. Since we're already using the same environment variable for our local DB the app should pick up the Heroku DB URL and use that in production.
 
 ### `database/build.js`
 
