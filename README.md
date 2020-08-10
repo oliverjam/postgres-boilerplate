@@ -18,6 +18,16 @@ You can change the user and database names to match your project.
 
 There is an `example.env` file in the root of the project. You can rename this to `.env` and change the URLs to match your own local databases and user.
 
+#### Initial data
+
+You can populate the database with test data by adding some tables to `src/database/init.sql`, then running the build script in your terminal:
+
+```sh
+node src/database/build.js
+```
+
+This will execute `init.sql` against your database.
+
 ## Running locally
 
 1. Clone the repo
