@@ -9,8 +9,7 @@ This is a shell to show how I'd structure a minimal Node app with a Postgres dat
 Type `psql` in your terminal to enter the Postgres CLI. Then run the following SQL to create a new user, development DB and test DB:
 
 ```sql
-CREATE USER myuser WITH PASSWORD 'mypassword';
-ALTER USER myuser WITH SUPERUSER;
+CREATE ROLE myuser SUPERUSER PASSWORD 'mypassword';
 CREATE DATABASE mydatabase WITH OWNER myuser;
 CREATE DATABASE mytestdatabase WITH OWNER myuser;
 ```
